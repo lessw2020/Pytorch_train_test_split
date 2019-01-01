@@ -46,8 +46,9 @@ def load_split_train_test(data_dir="./data/training", valid_size = .2):
 
     return trainloader, testloader
 
-trainloader, testloader = load_split_train_test()
-print(trainloader.dataset.classes)
+
+trainloader, testloader = load_split_train_test() #params = data_dir, valid_size = .2
+#print(trainloader.dataset.classes)
 
 
 
