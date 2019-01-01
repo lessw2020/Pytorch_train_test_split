@@ -12,11 +12,10 @@ from torch.utils.data.sampler import SubsetRandomSampler
 #added in constants to make adjustments easier.
 
 #constants
-DATA_DIR = './data/train'
 BATCH_SIZE=64
 IMG_RESIZE_TO=224
 
-def load_split_train_test(DATA_DIR, valid_size = .2):
+def load_split_train_test(data_dir="./data/training", valid_size = .2):
     train_transforms = transforms.Compose([transforms.Resize(IMG_RESIZE_TO),
                                        transforms.ToTensor(),
                                        ])
@@ -25,10 +24,10 @@ def load_split_train_test(DATA_DIR, valid_size = .2):
                                       ])
 
     #TODO: should add flag to make dir if not present?  Will still fail due to no images but one less step
-    train_data = datasets.ImageFolder(DATA_DIR,       
+    train_data = datasets.ImageFolder(data_dir,       
                     transform=train_transforms)
 
-    test_data = datasets.ImageFolder(DATA_DIR,
+    test_data = datasets.ImageFolder(data_dir,
                     transform=test_transforms)
 
     num_train = len(train_data)
@@ -47,7 +46,7 @@ def load_split_train_test(DATA_DIR, valid_size = .2):
 
     return trainloader, testloader
 
-trainloader, testloader = load_split_train_test(DATA_DIR, .2)
+trainloader, testloader = load_split_train_test()
 print(trainloader.dataset.classes)
 
 
